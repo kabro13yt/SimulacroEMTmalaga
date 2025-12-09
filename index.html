@@ -61,34 +61,26 @@ const lineasParadas = [
     { q:"Grupo oficial Calle de la Victoria:", options:["1-37-C1-C2-36-N2","1-37-C1-C2-35-N2","1-3-7-11","8-22-25-N4"], answer:0 },
 
     // LÍNEA 1 – 20 preguntas verificadas
-    { q:"¿Cuántas paradas tiene la Línea 1 en sentido San Andrés (ida)?", options:["29","30","31","32"], answer:2 },
-    { q:"¿Cuántas paradas tiene la Línea 1 en sentido Parque del Sur (vuelta)?", options:["31","32","33","34"], answer:2 },
-    { q:"Primera parada de la Línea 1 sentido San Andrés:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","Plaza de la Victoria","Alameda Principal"], answer:1 },
-    { q:"Última parada de la Línea 1 sentido San Andrés:", options:["Avda. Europa – I.E.S. Santa Bárbara","Hermanos Lumière","La Hoz – Mercado de Huelin","Cuarteles – Perchel"], answer:1 },
-    { q:"Última parada de la Línea 1 sentido Parque del Sur:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","Plaza de la Merced","San Juan Bosco"], answer:1 },
-    { q:"¿En qué sentido la Línea 1 para en 'La Hoz – Mercado de Huelin'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
-    { q:"¿En qué sentido la Línea 1 para en 'Ayala – Jardín de la Abadía'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
-    { q:"¿La Línea 1 pasa por 'Compás de la Victoria'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
-    { q:"¿La Línea 1 pasa por 'Salitre – Jacinto Verdaguer'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
-    { q:"¿La Línea 1 pasa por 'Avda. de la Paloma'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
-
-    // LÍNEA 37 – 25 preguntas
-    { q:"¿Cuántas paradas tiene la Línea 37 sentido Monte Dorado (ida)?", options:["25","26","27","28"], answer:2 },
-    { q:"¿Cuántas paradas tiene la Línea 37 sentido Avda. Andalucía (vuelta)?", options:["18","19","20","21"], answer:2 },
-    { q:"Última parada Línea 37 sentido Monte Dorado:", options:["Monte Dorado","Res. Sta. Clara","Bradamante"], answer:1 },
-
-    // LÍNEA C1 – 25 preguntas
-    { q:"¿Cuántas paradas tiene la Línea C1 (Circular)?", options:["30","31","32","33"], answer:2 },
-    { q:"¿La Línea C1 pertenece al grupo Calle de la Victoria?", options:["Sí","No"], answer:0 },
-
-    // LÍNEA C2 – 25 preguntas
-    { q:"¿Cuántas paradas tiene la Línea C2 (Circular 2)?", options:["32","33","34","35"], answer:2 },
-
-    // LÍNEA 36 – 25 preguntas
-    { q:"¿Cuántas paradas tiene la Línea 36 en sentido Conde Ureña (ida)?", options:["18","19","20","21"], answer:2 },
-
-    // LÍNEA N2 – 25 preguntas
-    { q:"¿Cuántas paradas tiene la Línea N2 (circular nocturna)?", options:["49","50","51","52"], answer:2 },
+  { q:"¿Cuántas paradas tiene la Línea 1 en sentido San Andrés?", options:["29","30","31","32"], answer:2 },
+  { q:"¿Cuál es la primera parada de la Línea 1 en sentido San Andrés?", options:["Avda. de las Postas – Lorenza Correa","Emilio Díaz","San Juan Bosco – Albéniz","Plaza de Capuchinos"], answer:0 },
+  { q:"¿Cuántas paradas tiene la Línea 1 en sentido Parque del Sur?", options:["31","32","33","34"], answer:2 },
+  { q:"¿Cuál es la última parada de la Línea 1 en sentido San Andrés?", options:["Avda. Europa – I.E.S. Santa Bárbara","Hermanos Lumière","La Hoz – Mercado de Huelin","Cuarteles – Perchel"], answer:1 },
+  { q:"¿La Línea 1 pasa por la Plaza de la Victoria en sentido San Andrés?", options:["Sí","No"], answer:0 },
+  { q:"¿La Línea 1 pasa por el Paseo del Parque en ambos sentidos?", options:["Sí","No"], answer:0 },
+  { q:"¿Cuál es la parada anterior a Hermanos Lumière en sentido Parque del Sur?", options:["Avda. Europa – I.E.S. Santa Bárbara","Avda. Europa – Camino Viejo de Churriana","Avda. Europa – San Andrés 2da Fase","Avda. Europa – La Luz"], answer:0 },
+  { q:"¿La Línea 1 pasa por la Alameda Principal en ambos sentidos?", options:["Sí","No"], answer:0 },
+  { q:"¿Cuál es la parada posterior a Cristo de la Epidemia en sentido San Andrés?", options:["Fuente Olletas","Tejeros","Plaza de la Victoria","Paseo del Parque"], answer:1 },
+  { q:"¿La Línea 1 pasa por la calle San Juan Bosco en ambos sentidos?", options:["Sí","No"], answer:0 },
+  { q:"¿Cuál es la última parada de la Línea 1 en sentido Parque del Sur?", options:["Avda. de las Postas – Lorenza Correa","Hermanos Lumière","La Hoz – Mercado de Huelin","Cuarteles – Perchel"], answer:0 },
+  { q:"¿La Línea 1 pasa por el Mercado de Huelin en sentido Parque del Sur?", options:["Sí","No"], answer:0 },
+  { q:"¿Cuál es la parada anterior a Avda. de las Postas – Lorenza Correa en sentido Parque del Sur?", options:["Florencia","San Juan Bosco – Guerrero Strachan","San Juan Bosco – Albéniz","San Juan Bosco – Segalerva"], answer:0 },
+  { q:"¿La Línea 1 pasa por la Plaza de la Merced en ambos sentidos?", options:["Sí","No"], answer:0 },
+  { q:"¿Cuál es la parada posterior a Paseo del Parque – Plaza del General Torrijos en sentido San Andrés?", options:["Paseo del Parque","Paseo del Parque – Plaza de la Marina","Alameda Principal – Norte","Avda. de Andalucía – Hacienda"], answer:1 },
+  { q:"¿La Línea 1 pasa por la Avda. de la Paloma en sentido Parque del Sur?", options:["Sí","No"], answer:0 },
+  { q:"¿Cuál es la parada anterior a La Hoz – Mercado de Huelin en sentido Parque del Sur?", options:["Avda. de la Paloma – Bda. Girón","Ayala – Jardín de la Abadía","Ayala – Iglesia","Ayala – Los Arcos"], answer:0 },
+  { q:"¿La Línea 1 pasa por el Compás de la Victoria en sentido Parque del Sur?", options:["Sí","No"], answer:0 },
+  { q:"¿Cuál es la parada posterior a Alameda Principal – Sur en sentido Parque del Sur?", options:["Paseo del Parque – Plaza de la Marina","Paseo del Parque – Ayuntamiento","Paseo del Parque – Plaza del General Torrijos","Avda. de la Aurora – Correos"], answer:1 },
+  { q:"¿La Línea 1 pasa por la calle Emilio Díaz en sentido San Andrés?", options:["Sí","No"], answer:0 },
 
     // Puedes seguir pegando aquí TODAS las preguntas que quieras (tienes espacio para 2000+)
     // Cada línea debe empezar con { q: y terminar con },
@@ -161,3 +153,4 @@ startNewExam();
 </script>
 </body>
 </html>
+
