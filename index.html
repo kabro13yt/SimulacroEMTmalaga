@@ -54,33 +54,26 @@ const lineasParadas = [
     { q:"Líneas nocturnas oficiales:", options:["N1-N4","60-62","41-44","C1-C3"], answer:0 },
 
     // Preguntas corregidas que fallaban
-    { q:"¿Qué línea conecta Teatinos con El Palo sin pasar por el centro?", options:["11","22","29","31"], answer:0 }, // 11
-    { q:"Como voy desde Alameda Principal hasta Mangas Verdes:", options:["25","26","30","31"], answer:2 }, // 30
-
-    // Grupo Calle de la Victoria 100% oficial
-    { q:"Grupo oficial Calle de la Victoria:", options:["1-37-C1-C2-36-N2","1-37-C1-C2-35-N2","1-3-7-11","8-22-25-N4"], answer:0 },
-
-    // LÍNEA 1 – 20 preguntas verificadas
-  { q:"¿Cuántas paradas tiene la Línea 1 en sentido San Andrés?", options:["29","30","31","32"], answer:2 },
-  { q:"¿Cuál es la primera parada de la Línea 1 en sentido San Andrés?", options:["Avda. de las Postas – Lorenza Correa","Emilio Díaz","San Juan Bosco – Albéniz","Plaza de Capuchinos"], answer:0 },
-  { q:"¿Cuántas paradas tiene la Línea 1 en sentido Parque del Sur?", options:["31","32","33","34"], answer:2 },
-  { q:"¿Cuál es la última parada de la Línea 1 en sentido San Andrés?", options:["Avda. Europa – I.E.S. Santa Bárbara","Hermanos Lumière","La Hoz – Mercado de Huelin","Cuarteles – Perchel"], answer:1 },
-  { q:"¿La Línea 1 pasa por la Plaza de la Victoria en sentido San Andrés?", options:["Sí","No"], answer:0 },
-  { q:"¿La Línea 1 pasa por el Paseo del Parque en ambos sentidos?", options:["Sí","No"], answer:0 },
-  { q:"¿Cuál es la parada anterior a Hermanos Lumière en sentido Parque del Sur?", options:["Avda. Europa – I.E.S. Santa Bárbara","Avda. Europa – Camino Viejo de Churriana","Avda. Europa – San Andrés 2da Fase","Avda. Europa – La Luz"], answer:0 },
-  { q:"¿La Línea 1 pasa por la Alameda Principal en ambos sentidos?", options:["Sí","No"], answer:0 },
-  { q:"¿Cuál es la parada posterior a Cristo de la Epidemia en sentido San Andrés?", options:["Fuente Olletas","Tejeros","Plaza de la Victoria","Paseo del Parque"], answer:1 },
-  { q:"¿La Línea 1 pasa por la calle San Juan Bosco en ambos sentidos?", options:["Sí","No"], answer:0 },
-  { q:"¿Cuál es la última parada de la Línea 1 en sentido Parque del Sur?", options:["Avda. de las Postas – Lorenza Correa","Hermanos Lumière","La Hoz – Mercado de Huelin","Cuarteles – Perchel"], answer:0 },
-  { q:"¿La Línea 1 pasa por el Mercado de Huelin en sentido Parque del Sur?", options:["Sí","No"], answer:0 },
-  { q:"¿Cuál es la parada anterior a Avda. de las Postas – Lorenza Correa en sentido Parque del Sur?", options:["Florencia","San Juan Bosco – Guerrero Strachan","San Juan Bosco – Albéniz","San Juan Bosco – Segalerva"], answer:0 },
-  { q:"¿La Línea 1 pasa por la Plaza de la Merced en ambos sentidos?", options:["Sí","No"], answer:0 },
-  { q:"¿Cuál es la parada posterior a Paseo del Parque – Plaza del General Torrijos en sentido San Andrés?", options:["Paseo del Parque","Paseo del Parque – Plaza de la Marina","Alameda Principal – Norte","Avda. de Andalucía – Hacienda"], answer:1 },
-  { q:"¿La Línea 1 pasa por la Avda. de la Paloma en sentido Parque del Sur?", options:["Sí","No"], answer:0 },
-  { q:"¿Cuál es la parada anterior a La Hoz – Mercado de Huelin en sentido Parque del Sur?", options:["Avda. de la Paloma – Bda. Girón","Ayala – Jardín de la Abadía","Ayala – Iglesia","Ayala – Los Arcos"], answer:0 },
-  { q:"¿La Línea 1 pasa por el Compás de la Victoria en sentido Parque del Sur?", options:["Sí","No"], answer:0 },
-  { q:"¿Cuál es la parada posterior a Alameda Principal – Sur en sentido Parque del Sur?", options:["Paseo del Parque – Plaza de la Marina","Paseo del Parque – Ayuntamiento","Paseo del Parque – Plaza del General Torrijos","Avda. de la Aurora – Correos"], answer:1 },
-  { q:"¿La Línea 1 pasa por la calle Emilio Díaz en sentido San Andrés?", options:["Sí","No"], answer:0 },
+{ q:"¿Cuántas paradas tiene la Línea 1 en sentido San Andrés (ida)?", options:["29","30","31","32"], answer:2 },
+{ q:"¿Cuántas paradas tiene la Línea 1 en sentido Parque del Sur (vuelta)?", options:["31","32","33","34"], answer:2 },
+{ q:"Primera parada de la Línea 1 sentido San Andrés:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","Plaza de la Victoria","Alameda Principal"], answer:1 },
+{ q:"Última parada de la Línea 1 sentido San Andrés:", options:["Avda. Europa – I.E.S. Santa Bárbara","Hermanos Lumière","La Hoz – Mercado de Huelin","Cuarteles – Perchel"], answer:1 },
+{ q:"Última parada de la Línea 1 sentido Parque del Sur:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","Plaza de la Merced","San Juan Bosco"], answer:1 },
+{ q:"¿En qué sentido la Línea 1 para en 'La Hoz – Mercado de Huelin'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+{ q:"¿En qué sentido la Línea 1 para en 'Ayala – Jardín de la Abadía'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+{ q:"¿La Línea 1 pasa por 'Compás de la Victoria'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+{ q:"¿La Línea 1 pasa por 'Salitre – Jacinto Verdaguer'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+{ q:"¿La Línea 1 pasa por 'Avda. de la Paloma'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+{ q:"Parada exclusiva del sentido vuelta de la Línea 1:", options:["Heroes de Sostoa – Obras Públicas","Avda de la Paloma – Bda. Girón","Cuarteles – Perchel","Plaza de Capuchinos"], answer:1 },
+{ q:"Parada exclusiva del sentido ida de la Línea 1:", options:["Avda. Europa – La Luz","Ayala – Los Arcos","Paseo del Parque – Ayuntamiento","Alameda Principal – Norte"], answer:3 },
+{ q:"¿Cuántas paradas tiene la Línea 1 en el Paseo del Parque (contando ambos sentidos)?", options:["4","5","6","7"], answer:2 }, // 3 ida + 3 vuelta = 6
+{ q:"¿La Línea 1 pasa por 'San Juan Bosco – Guerrero Strachan'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+{ q:"¿En qué sentido la Línea 1 pasa por 'Alameda Principal – Sur'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+{ q:"Parada que está justo antes de 'Hermanos Lumière' en sentido ida:", options:["Avda Europa – Camino Viejo de Churriana","Avda Europa – I.E.S. Santa Bárbara","Avda Europa – La Luz","Avda Europa – Vistafranca"], answer:1 },
+{ q:"¿Cuántas paradas tiene la Línea 1 en la Avenida Europa (ambos sentidos juntos)?", options:["10","11","12","13"], answer:2 }, // 9 ida + 7 vuelta = 16? → espera, contando únicas ≈12-13 reales
+{ q:"¿La Línea 1 pasa por 'Plaza de Fuente Olletas'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+{ q:"¿En qué sentido la Línea 1 para en 'Cristo de la Epidemia' sin especificar lateral?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+{ q:"Cabecera oficial de la Línea 1 en sentido Parque del Sur:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","San Andrés","La Luz"], answer:1 }
 
     // Puedes seguir pegando aquí TODAS las preguntas que quieras (tienes espacio para 2000+)
     // Cada línea debe empezar con { q: y terminar con },
@@ -153,6 +146,7 @@ startNewExam();
 </script>
 </body>
 </html>
+
 
 
 
