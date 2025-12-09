@@ -73,7 +73,32 @@ const lineasParadas = [
 { q:"¿Cuántas paradas tiene la Línea 1 en la Avenida Europa (ambos sentidos juntos)?", options:["10","11","12","13"], answer:2 }, // 9 ida + 7 vuelta = 16? → espera, contando únicas ≈12-13 reales
 { q:"¿La Línea 1 pasa por 'Plaza de Fuente Olletas'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
 { q:"¿En qué sentido la Línea 1 para en 'Cristo de la Epidemia' sin especificar lateral?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
-{ q:"Cabecera oficial de la Línea 1 en sentido Parque del Sur:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","San Andrés","La Luz"], answer:1 }
+{ q:"Cabecera oficial de la Línea 1 en sentido Parque del Sur:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","San Andrés","La Luz"], answer:1 },
+{ q:"¿Cuántas paradas tiene la Línea 37 en sentido Monte Dorado (ida)?", options:["25","26","27","28"], answer:2 },
+{ q:"¿Cuántas paradas tiene la Línea 37 en sentido Avda. Andalucía (vuelta)?", options:["18","19","20","21"], answer:2 },
+{ q:"Primera parada de la Línea 37 sentido Monte Dorado:", options:["Avda. Andalucía","Alameda Principal – Sur","Paseo del Parque","Plaza de la Victoria"], answer:0 },
+{ q:"Última parada de la Línea 37 sentido Monte Dorado:", options:["Cmno del Colmenar – Monte Dorado","Cmno del Colmenar – Bradamante","Cmno del Colmenar – Res. Sta. Clara","Los Antonios"], answer:2 },
+{ q:"Primera parada de la Línea 37 sentido Avda. Andalucía (vuelta):", options:["Cmno del Colmenar – Res. Sta. Clara","Cmno del Colmenar – Monte Dorado","Avda. Manuel Gorria","Plaza de la Victoria"], answer:0 },
+{ q:"Última parada de la Línea 37 sentido Avda. Andalucía:", options:["Alameda Principal – Norte","Avda. Andalucía","Paseo del Parque","Plaza Maestro Artola"], answer:1 },
+{ q:"¿En qué sentido la Línea 37 pasa por 'Plaza Maestro Artola'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:2 },
+{ q:"¿En qué sentido la Línea 37 pasa por 'Cristo de la Epidemia – Fuente Olletas'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+{ q:"¿En qué sentido la Línea 37 pasa por 'Tejeros'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+{ q:"¿La Línea 37 pasa por 'Avda. Manuel Gorria – Rotonda'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+{ q:"Parada que la Línea 37 hace dos veces en la ida:", options:["Olletas – Cmno del Colmenar","Cmno de los Almendrales – Toquero","Cmno de los Almendrales – Seminario","Todas las anteriores"], answer:3 },
+{ q:"¿La Línea 37 pasa por 'Cmno de los Almendrales – Sierra Blanquilla'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:0 },
+{ q:"¿En qué sentido la Línea 37 pasa por 'Paseo del Parque – Ayuntamiento'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:0 },
+{ q:"¿La Línea 37 pasa por 'Alameda Principal – Sur'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:0 },
+{ q:"¿La Línea 37 pasa por 'Alameda Principal – Norte'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+{ q:"Parada exclusiva del sentido vuelta de la Línea 37:", options:["Plaza de Olletas","Tejeros","Escritor Antonio Ramos – Colegio","Avda. Andalucía"], answer:1 },
+{ q:"Parada exclusiva del sentido ida de la Línea 37:", options:["Plaza de Olletas","Cmno de los Almendrales – Sierra Blanquilla","Plaza de la Victoria","Paseo del Parque"], answer:1 },
+{ q:"¿Cuántas veces pasa la Línea 37 por 'Plaza de la Victoria' (contando ida y vuelta)?", options:["Una vez","Dos veces","Tres veces","Ninguna"], answer:1 }, // ida y vuelta
+{ q:"¿La Línea 37 pasa por 'Fernando el Católico'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:0 },
+{ q:"¿La Línea 37 pertenece al grupo Calle de la Victoria?", options:["Sí","No"], answer:0 },
+{ q:"¿En qué sentido la Línea 37 pasa por 'Escritor Antonio Ramos – Colegio'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:2 },
+{ q:"Parada que está justo antes de llegar a Monte Dorado en la ida:", options:["Cmno del Colmenar – Cuesta Tasara","Cmno del Colmenar – Los Antonios","Cmno del Colmenar – Bradamante","Res. Sta. Clara"], answer:2 },
+{ q:"¿Cuántas paradas tiene la Línea 37 en el Paseo del Parque (ambos sentidos juntos)?", options:["4","5","6","7"], answer:2 }, // 4 ida + 3 vuelta = 7
+{ q:"¿La Línea 37 pasa por 'Paseo del Parque – Plaza Marina'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+{ q:"Cabecera oficial de la Línea 37 en sentido centro:", options:["Avda. Andalucía","Alameda Principal","Monte Dorado","Res. Sta. Clara"], answer:0 }
 ];
 
 // ==================== PLAN DE IGUALDAD Y ORDENANZA ====================
@@ -143,5 +168,6 @@ startNewExam();
 </script>
 </body>
 </html>
+
 
 
