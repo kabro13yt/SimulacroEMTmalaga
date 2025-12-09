@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Test EMT Málaga 2025 - 40 Preguntas Oficiales + Datos Mamme</title>
+<title>Test EMT Málaga 2025 - 40 Preguntas Aleatorias (Líneas + Igualdad)</title>
 <style>
     body {font-family: Arial, sans-serif; background: #f0f8ff; margin:0; padding:20px;}
     .container {max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
@@ -11,7 +11,7 @@
     h1 {color:#003366; margin:10px 0 5px; font-size:28px;}
     h1 small {display:block; font-size:18px; color:#555;}
     .question-box {background:#e6f7ff; padding:25px; border-radius:12px; border-left:6px solid #0066cc; font-size:19px; margin-bottom:20px; line-height:1.5;}
-    .option {background:#fff; border:2px solid #ddd; padding:18px; margin:12px 0; border-radius:10px; cursor:pointer; transition:all 0.3s; font-size:17px;}
+    .option {background:#fff; border:2px solid #ddd; padding:18px; margin:12px 0; border-radius:10px; cursor:pointer; transition:all 0.3s;}
     .option:hover {background:#f0f8ff; border-color:#0066cc;}
     .correct {background:#d4edda !important; border-color:#28a745 !important; color:#155724;}
     .wrong {background:#f8d7da !important; border-color:#dc3545 !important; color:#721c24;}
@@ -29,7 +29,8 @@
 
 <div class="container">
     <header>
-        <h1>Test Oficial EMT Málaga 2025<br><small>40 preguntas aleatorias: 20 Líneas/Paradas ● 10 Plan Igualdad ● 10 Ordenanza<br><strong style="color:#d32f2f;">+ Datos reales del PDF Mamme integrados</strong></small></h1>
+        <h1>Test EMT Málaga 2025<br>
+        <small>40 Preguntas Aleatorias (Líneas/Paradas + Plan de Igualdad)</small></h1>
     </header>
 
     <div id="question" class="question-box"></div>
@@ -44,134 +45,177 @@
 </div>
 
 <script>
-// ==================== 312 + 25 PREGUNTAS LÍNEAS Y PARADAS EMT MÁLAGA (originales + nuevas del PDF Mamme) ====================
+// ==================== ARRAY LINEAS PARADAS – TUS PREGUNTAS ACTUALES ====================
 const lineasParadas = [
+    // Preguntas 1 a 4
     { q:"¿Qué línea debe coger un usuario en Av. Plutarco para llegar a Cortijo Alto?", options:["8","N4","C5","3"], answer:0 },
     { q:"En 'Navarro Ledesma-La Palma' Línea 8 dirección centro coincide con...", options:["C5 y N4","23 y N4","23 y C5","N4, 23 y C5"], answer:3 },
     { q:"¿Cuántas paradas hace la Línea 1 en Paseo del Parque sentido Universidad?", options:["2","3","4","0"], answer:1 },
-    { q:"En Línea A ¿en qué parada NO te detienes?", options:["Estación Autobuses","Av. Velázquez-El Torcal","Av centro","Todas"], answer:1 },
     { q:"Líneas nocturnas oficiales:", options:["N1-N4","60-62","41-44","C1-C3"], answer:0 },
-    // ... (tus 312 originales siguen aquí, no las repito para no alargar, pero están todas)
 
-    // ==================== NUEVAS PREGUNTAS 100% REALES DEL PDF "ESCRITO MAMME" ====================
-    { q:"Grupo de líneas que pasan por Calle de la Victoria:", options:["1-37-C1-C2-36-N2","1-3-7-11","8-22-25","15-17-31"], answer:0 },
-    { q:"¿Cuántas paradas tiene la Línea 1 sentido San Andrés (ida)?", options:["29","31","33","35"], answer:1 },
-    { q:"¿Cuántas paradas tiene la Línea 1 sentido Parque del Sur (vuelta)?", options:["31","33","35","37"], answer:1 },
+    // Preguntas 5 a 24 (Línea 1 verificada)
+    { q:"¿Cuántas paradas tiene la Línea 1 en sentido San Andrés (ida)?", options:["29","30","31","32"], answer:2 }, 
+    { q:"¿Cuántas paradas tiene la Línea 1 en sentido Parque del Sur (vuelta)?", options:["31","32","33","34"], answer:2 },
     { q:"Primera parada de la Línea 1 sentido San Andrés:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","Plaza de la Victoria","Alameda Principal"], answer:1 },
-    { q:"Última parada de la Línea 1 sentido San Andrés:", options:["Avda. Europa – I.E.S. Santa Bárbara","Hermanos Lumière","La Hoz – Mercado de Huelin","Plaza de Capuchinos"], answer:1 },
-    { q:"¿La Línea 1 pasa por 'La Hoz – Mercado de Huelin'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Ninguno"], answer:1 },
-    { q:"¿La Línea 1 pasa por 'Ayala – Jardín de la Abadía'?", options:["Solo ida","Solo vuelta","Ambos","Ninguno"], answer:1 },
-    { q:"¿Cuántas paradas tiene la Línea 37 sentido Monte Dorado (ida)?", options:["20","25","27","30"], answer:2 },
-    { q:"¿Cuántas paradas tiene la Línea 37 sentido Avda. Andalucía (vuelta)?", options:["20","22","25","27"], answer:0 },
-    { q:"Primera parada de la Línea 37 sentido Monte Dorado:", options:["Avda. Andalucía","Alameda Principal – Sur","Paseo del Parque","Plaza de la Merced"], answer:0 },
-    { q:"Última parada de la Línea 37 sentido Monte Dorado:", options:["Cmno del Colmenar – Res. Sta. Clara","Monte Dorado","Avda. Manuel Gorria","Olletas"], answer:0 },
-    { q:"¿La Línea 37 pasa por 'Plaza Maestro Artola'?", options:["Sí, ambos sentidos","Solo ida","Solo vuelta","No"], answer:0 },
-    { q:"¿La Línea 37 pasa por 'Cristo de la Epidemia – Fuente Olletas'?", options:["Solo ida","Solo vuelta","Ambos sentidos","No"], answer:1 },
-    { q:"¿Qué línea pasa por 'Cmno de los Almendrales – Seminario?", options:["1","37","Ambas","Ninguna"], answer:1 },
-    { q:"¿La Línea 1 y la 37 coinciden en Plaza de la Victoria?", options:["Sí","No"], answer:0 },
-    { q:"¿La Línea 1 pasa por 'Avda. de la Paloma'?", options:["Sí","No"], answer:1 },
-    { q:"¿En qué sentido la Línea 1 pasa por 'Salitre – Jacinto Verdaguer'?", options:["Ida","Vuelta","Ambos","Ninguno"], answer:1 },
-    { q:"¿Qué líneas pasan por 'Paseo del Parque – Plaza del General Torrijos'?", options:["Solo 1","Solo 37","1 y 37","Ninguna"], answer:2 },
-    { q:"¿La Línea 37 pasa por 'Alameda de Capuchinos – El Ejido'?", options:["Sí","No"], answer:0 },
-    { q:"Parada común muy frecuente entre Línea 1 y 37:", options:["Hermanos Lumière","Plaza de la Merced","Avda. Europa","Alameda Principal"], answer:1 },
-    { q:"¿La Línea 1 pasa por 'Cuarteles – Perchel'?", options:["Sí","No"], answer:0 },
-    { q:"¿La Línea 37 pasa por 'Avda. Europa – Bda. El Torcal'?", options:["Sí","No"], answer:1 },
-    { q:"¿Qué línea tiene más paradas en total (ida + vuelta)?", options:["Línea 1","Línea 37"], answer:0 },
-    { q:"Parada 'Plaza de Olletas' en Línea 37:", options:["Solo ida","Solo vuelta","Ambos","No"], answer:0 },
-    { q:"¿La Línea 1 pasa por 'Compás de la Victoria'?", options:["Sí","No"], answer:1 },
-    { q:"Cabecera actual de la Línea 1 sentido Parque del Sur:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","San Andrés","La Luz"], answer:1 },
+    { q:"Última parada de la Línea 1 sentido San Andrés:", options:["Avda. Europa – I.E.S. Santa Bárbara","Hermanos Lumière","La Hoz – Mercado de Huelin","Cuarteles – Perchel"], answer:1 },
+    { q:"Última parada de la Línea 1 sentido Parque del Sur:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","Plaza de la Merced","San Juan Bosco"], answer:1 },
+    { q:"¿En qué sentido la Línea 1 para en 'La Hoz – Mercado de Huelin'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+    { q:"¿En qué sentido la Línea 1 para en 'Ayala – Jardín de la Abadía'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+    { q:"¿La Línea 1 pasa por 'Compás de la Victoria'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+    { q:"¿La Línea 1 pasa por 'Salitre – Jacinto Verdaguer'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+    { q:"¿La Línea 1 pasa por 'Avda. de la Paloma'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+    { q:"Parada exclusiva del sentido vuelta de la Línea 1:", options:["Heroes de Sostoa – Obras Públicas","Avda de la Paloma – Bda. Girón","Cuarteles – Perchel","Plaza de Capuchinos"], answer:1 },
+    { q:"Parada exclusiva del sentido ida de la Línea 1:", options:["Avda. Europa – La Luz","Ayala – Los Arcos","Paseo del Parque – Ayuntamiento","Alameda Principal – Norte"], answer:3 },
+    { q:"¿Cuántas paradas tiene la Línea 1 en el Paseo del Parque (contando ambos sentidos)?", options:["4","5","6","7"], answer:2 },
+    { q:"¿La Línea 1 pasa por 'San Juan Bosco – Guerrero Strachan'?", options:["Solo ida","Solo vuelta","Ambos sentidos","Nunca"], answer:1 },
+    { q:"¿En qué sentido la Línea 1 pasa por 'Alameda Principal – Sur'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+    { q:"Parada que está justo antes de 'Hermanos Lumière' en sentido ida:", options:["Avda Europa – Camino Viejo de Churriana","Avda Europa – I.E.S. Santa Bárbara","Avda Europa – La Luz","Avda Europa – Vistafranca"], answer:1 },
+    { q:"¿Cuántas paradas tiene la Línea 1 en la Avenida Europa (ambos sentidos juntos)?", options:["10","11","12","13"], answer:2 }, 
+    { q:"¿La Línea 1 pasa por 'Plaza de Fuente Olletas'?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+    { q:"¿En qué sentido la Línea 1 para en 'Cristo de la Epidemia' sin especificar lateral?", options:["Solo ida","Solo vuelta","Ambos","Nunca"], answer:1 },
+    { q:"Cabecera oficial de la Línea 1 en sentido Parque del Sur:", options:["Hermanos Lumière","Avda. de las Postas – Lorenza Correa","San Andrés","La Luz"], answer:1 }, 
 
-    // Puedes seguir añadiendo más cuando tengas el resto del PDF
+    // Preguntas 25 en adelante (resto de preguntas de línea)
+    { q:"¿La Línea 1 pasa por la calle Emilio Díaz en sentido San Andrés?", options:["Sí","No"], answer:0 },
+    { q:"¿Cuántas paradas tiene la Línea 37 en sentido Monte Dorado (ida)?", options:["25","26","27","28"], answer:2 },
+    { q:"¿Cuántas paradas tiene la Línea 37 en sentido Avda. Andalucía (vuelta)?", options:["18","19","20","21"], answer:2 },
+    { q:"Línea 23 sentido El Palo coincide con:", options:["C3, 8 y 2","11 y 25","38 y C5","21 y 38"], answer:3 },
+    { q:"¿Cuántas paradas hace la Línea 3 en Paseo del Parque sentido Puerta Blanca?", options:["2","3","4","0"], answer:1 },
+    { q:"Parada más cercana al Centro Comercial Larios de Línea 10:", options:["Avda. Andalucía - Perchel","Paseo de los Tilos - Callejones del Perchel","Cuarteles - Eslava","El Perchel - Larios"], answer:1 },
+    { q:"¿Cuántas paradas tiene la Línea C1 en sentido Alameda Principal?", options:["10","11","12","13"], answer:2 },
+    { q:"¿Cuál es la cabecera de la Línea 18 en sentido Ciudad Jardín?", options:["Alameda Principal - Sur","Avda. Andalucía - Jardín de la Abadía","Paseo del Parque - Plaza de la Marina","Santa Paula"], answer:3 },
+    { q:"Líneas que pasan por la parada de 'Avda. de Andalucía - Jardín de la Abadía' en sentido Centro:", options:["1, 3, 11, N2","18, 20, 25, 31, C2, N1","8, 23, C5, N4","14, 17, 33, 34"], answer:1 },
+    { q:"¿Cuántas paradas comparte la Línea 8 y la Línea 23 en el Centro Histórico?", options:["2","3","4","5"], answer:0 },
 ];
 
-// ==================== 100 PREGUNTAS PLAN DE IGUALDAD ====================
+
+// ==================== ARRAY PLAN DE IGUALDAD (100 PREGUNTAS) ====================
+// El total de preguntas será 100
 const planIgualdad = [
-    { q:"Vigencia del III Plan de Igualdad:", options:["2020-2024","2022-2026","2021-2025","2023-2027"], answer:1 },
-    { q:"Objetivo general: priorizar a igualdad de condiciones al sexo...", options:["mayoritario","menos representado","con más antigüedad","con hijos"], answer:1 },
-    // ... las demás 98 siguen igual
-];
-
-// ==================== 60 PREGUNTAS ORDENANZA ====================
-const ordenanza = [
-    { q:"Fecha aprobación definitiva modificación Ordenanza:", options:["27 jul 2023","1 sep 2023","4 dic 2023","28 dic 2023"], answer:3 },
-    // ... las demás igual
-];
-
-// ==================== MOTOR DEL TEST ====================
-let examQuestions = [], currentIndex = 0, userAnswers = [];
-
-function startNewExam() {
-    const l = lineasParadas.sort(()=>0.5-Math.random()).slice(0,20);
-    const i = planIgualdad.sort(()=>0.5-Math.random()).slice(0,10);
-    const o = ordenanza.sort(()=>0.5-Math.random()).slice(0,10);
-    examQuestions = [...l, ...i, ...o].sort(()=>0.5-Math.random());
-    currentIndex = 0;
-    userAnswers = new Array(40).fill(null);
-    document.getElementById("score").innerHTML = "";
-    loadQuestion();
-    updateButtons();
-}
-
-function loadQuestion() {
-    const q = examQuestions[currentIndex];
-    document.getElementById("question").innerHTML = `<b>Pregunta ${currentIndex+1}/40</b><br>${q.q}`;
-    let html = "";
-    q.options.forEach((opt,i) => {
-        let c = "option";
-        if (userAnswers[currentIndex] !== null) {
-            if (i === q.answer) c += " correct";
-            else if (i === userAnswers[currentIndex]) c += " wrong";
-        }
-        html += `<div class="${c}" onclick="selectAnswer(${i})">${opt}</div>`;
-    });
-    document.getElementById("options").innerHTML = html;
-    updateScore();
-}
-
-function selectAnswer(n) { 
-    userAnswers[currentIndex] = n; 
-    loadQuestion(); 
-}
-
-function prevQuestion() { 
-    if (currentIndex > 0) { 
-        currentIndex--; 
-        loadQuestion(); 
-        updateButtons(); 
-    } 
-}
-
-function nextQuestion() { 
-    if (currentIndex < 39) { 
-        currentIndex++; 
-        loadQuestion(); 
-        updateButtons(); 
-    } else {
-        finalizar(); 
-    }
-}
-
-function updateButtons() { 
-    document.getElementById("prevBtn").disabled = currentIndex===0;
-    document.getElementById("nextBtn").innerHTML = currentIndex===39 ? "Finalizar" : "Siguiente ►";
-}
-
-function updateScore() { 
-    const r = userAnswers.filter(x=>x!==null).length;
-    const a = userAnswers.filter((x,i)=>x===examQuestions[i]?.answer).length;
-    document.getElementById("score").innerHTML = `Respondidas: ${r}/40 | Aciertos: ${a}`;
-}
-
-function finalizar() {
-    const correctas = userAnswers.filter((x,i)=>x===examQuestions[i].answer).length;
-    document.getElementById("question").innerHTML = "<div class='final'>¡EXAMEN COMPLETADO!</div>";
-    document.getElementById("options").innerHTML = `<h2 style="text-align:center;color:#16a34a;">¡${correctas} aciertos de 40!</h2><p style="text-align:center;">Pulsa Nuevo Examen para otro test distinto</p>`;
-    document.getElementById("score").innerHTML = "";
-    document.getElementById("prevBtn").disabled = true;
-    document.getElementById("nextBtn").disabled = true;
-}
-
-startNewExam();
-</script>
-</body>
-</html>
+{ q:"¿Cuál es la vigencia del III Plan de Igualdad de la EMT?", options:["2020-2024","2022-2026","2021-2025","2023-2027"], answer:1 },
+{ q:"¿En cuál de las siguientes secciones se enmarcan las 'Medidas de Igualdad' dentro del III Plan?", options:["1. Objetivos del III Plan de Igualdad","2. Áreas de Intervención. Medidas de Igualdad","3. Seguimiento y Evaluación del III Plan","4. Diagnóstico de Situación"], answer:1 },
+{ q:"¿Cuál es un Objetivo General clave del III Plan de Igualdad?", options:["Asegurar el máximo de mujeres en puestos directivos.","Garantizar la rotación obligatoria de personal entre sexos.","Garantizar el principio de igualdad de trato, dando prioridad al sexo menos representado a igualdad de condiciones.","Eliminar totalmente la infrarrepresentación femenina antes de 2026."], answer:2 },
+{ q:"¿Cuántos Ejes o Áreas de Intervención tiene el III Plan de Igualdad de la EMT?", options:["9","10","11","12"], answer:2 },
+{ q:"En el Eje 1, ¿cuál es el objetivo específico primordial?", options:["Fomentar la presencia equilibrada de mujeres y hombres en los puestos y categorías donde las primeras están infrarrepresentadas.","Crear puestos de trabajo solo para mujeres.","Reducir la brecha salarial al 0% en el primer año.","Limitar la promoción profesional solo a los hombres."], answer:0 },
+{ q:"¿Qué Eje de Intervención busca la 'eliminación de la segregación vertical y horizontal'?", options:["Eje 2. Proceso de Selección y Contratación","Eje 3. Promoción Profesional","Eje 4. Política Retributiva","Eje 5. Conciliación"], answer:1 },
+{ q:"El Objetivo Específico del Eje 4 es garantizar un sistema de retribución no discriminatorio por razón de género para trabajos de...", options:["Diferente valor","Igual valor","Menor valor","Igual responsabilidad"], answer:1 },
+{ q:"¿Quién es el responsable de elaborar la base de datos de mujeres con potencial de desarrollo (Medida 1.1)?", options:["Comisión de Igualdad","Dirección General","SPP (Servicio de Prevención)","RRHH"], answer:3 },
+{ q:"¿Con qué periodicidad se realizará el Registro Salarial (Medida 4.1)?", options:["Semestralmente","Anualmente","Cada dos años","Mensualmente"], answer:1 },
+{ q:"Según el III Plan, el seguimiento de la ejecución se realizará con periodicidad:", options:["Anual","Bimensual","Trimestral","Semestral"], answer:3 },
+{ q:"El Eje 5 se centra en el ejercicio corresponsable de los derechos de la vida personal, familiar y laboral, ¿qué colectivo se busca especialmente fomentar en el uso de medidas de corresponsabilidad?", options:["Mujeres de la plantilla","Trabajadoras víctimas de violencia de género","Hombres de la plantilla","Personal directivo"], answer:2 },
+{ q:"¿Cuál es uno de los objetivos específicos del Eje 2 (Selección y Contratación)?", options:["Eliminar la necesidad de experiencia previa.","Fomentar el acceso de mujeres a puestos masculinizados.","Establecer cuotas de contratación solo para hombres.","Reducir el número de contratos indefinidos."], answer:1 },
+{ q:"El III Plan exige que las convocatorias de empleo se basen en información ajustada a las características objetivas del puesto y se revisen los requisitos para evitar que el peso de la __________ sea excesivo, dejando fuera a candidaturas de mujeres.", options:["Experiencia","Formación reglada","Titulación","Antigüedad"], answer:0 },
+{ q:"¿Cuál es la temática principal del Eje 7?", options:["Comunicación y Lenguaje Inclusivo","Promoción Profesional","Condiciones de Trabajo. Salud Laboral y Género","Responsabilidad Social y Ciudadana"], answer:2 },
+{ q:"El Eje 7 exige atender especialmente a los riesgos asociados a:", options:["Turnos nocturnos y fines de semana.","El uso de EPIs y herramientas pesadas.","El embarazo y la lactancia.","El estrés y la carga mental."], answer:2 },
+{ q:"La Medida 1.1, la base de datos de mujeres con potencial, tenía un plazo de realización fijado para:", options:["1º trimestre 2022","2º trimestre 2022","3º trimestre 2022","4º trimestre 2022"], answer:3 },
+{ q:"¿Qué principio básico se aplica en la contratación, dando prioridad al sexo menos representado a igualdad de condiciones?", options:["Principio de Discriminación Positiva","Principio de Composición Equilibrada","Principio de Equidad","Principio de Acción Positiva"], answer:3 },
+{ q:"¿Qué Eje busca la revisión y corrección del lenguaje e imágenes utilizadas en las comunicaciones?", options:["Eje 6. Formación","Eje 7. Salud Laboral","Eje 8. Comunicación. Lenguaje e Imágenes Inclusivas","Eje 9. Prevención del Acoso"], answer:2 },
+{ q:"Una de las atribuciones de la Comisión de Seguimiento es el 'Conocimiento y resolución de los conflictos derivados de la aplicación de interpretación del presente Plan'. ¿Cuál es la condición preceptiva antes de acudir a la jurisdicción competente?", options:["La intervención de RRHH.","El informe de la Dirección.","La intervención de la Comisión.","El informe del Comité de Empresa."], answer:2 },
+{ q:"La evaluación final del III Plan se realizará...", options:["Al finalizar el cuarto año de vigencia.","Seis meses después de finalizar la vigencia.","Dos meses antes de que transcurran los cuatro años desde su firma.","Al año de su firma."], answer:2 },
+{ q:"El Eje 9 está dedicado a:", options:["La Política Retributiva","La Violencia de Género","La Prevención del Acoso Sexual y por razón de sexo","La Infrarrepresentación femenina"], answer:2 },
+{ q:"La Medida 2.2 (Acciones formativas para responsables de selección) tenía como plazo de realización el:", options:["1º trimestre 2022","2º trimestre 2022","1º trimestre 2023","Permanente"], answer:1 },
+{ q:"¿Qué tipo de información debe registrar el Registro Salarial (Medida 4.1)?", options:["Solo el salario base.","Los valores medios y medianas de salarios, complementos y percepciones extrasalariales.","Únicamente el salario bruto anual.","Los salarios por grupos de edad."], answer:1 },
+{ q:"En el Eje 10 (Violencia de Género), ¿qué debe incluir el Protocolo de Actuación Específico?", options:["Garantizar la confidencialidad de la víctima y procedimiento de movilidad.","La prohibición total de contratación de mujeres víctimas.","La adaptación de jornada para cualquier miembro de la plantilla.","La intervención exclusiva de la Dirección."], answer:0 },
+{ q:"Los estudios en materia de salud laboral (Medida 7.1) deben estar desagregados por sexo y dirigidos a establecer la evaluación inicial de riesgos desde una perspectiva:", options:["Estrictamente legal","Objetiva","Transversal de género","Funcional"], answer:2 },
+{ q:"¿Qué dimensión NO es parte del Análisis Cuantitativo del seguimiento del Plan?", options:["Conocer el grado de consecución de los objetivos.","Conocer las relaciones entre objetivos y resultados.","Conocer las acciones realizadas.","Número de mujeres promocionadas."], answer:1 },
+{ q:"Una de las medidas del Eje 3 es comunicar de forma transparente los procesos de promoción interna, informando que se realizarán bajo el prisma de:", options:["La eficiencia económica","La igualdad de oportunidades","La antigüedad","La polivalencia"], answer:1 },
+{ q:"El Eje 11 tiene como objetivo promover el valor de la igualdad de género y crear una cultura acorde con el principio de igualdad en todos los aspectos de:", options:["La vida personal de la plantilla","La estructura organizativa de la empresa","Los resultados económicos","La imagen externa solamente"], answer:1 },
+{ q:"¿Cuál de estos NO es un objetivo específico del III Plan?", options:["Infrarrepresentación femenina.","Promoción profesional.","Política de Recursos Humanos.","Formación."], answer:2 },
+{ q:"En el proceso de selección, la EMT asegurará que la empresa externa de selección esté comprometida con la igualdad de oportunidades mediante la...", options:["Adhesión a nuestra política de igualdad.","Superación de un examen.","Contratación exclusiva de mujeres.","Presentación de un Plan de Igualdad propio."], answer:0 },
+{ q:"La Medida 6.4 del Eje Formación busca adaptar el lenguaje y los contenidos de los materiales formativos para evitar:", options:["Complejidad técnica","Discriminación de género y estereotipos","Horarios incompatibles","Bajos resultados"], answer:1 },
+{ q:"La Prevención del acoso (Eje 9) promueve acciones que aseguren la dignidad e intimidad de hombres y mujeres, que tienen derecho por igual a no ser objeto de ningún tipo de violencia, sea esta verbal, física, psicológica o de naturaleza...", options:["Emocional","Patrimonial","Sexual","Profesional"], answer:2 },
+{ q:"¿Qué tipo de segregación busca eliminar el Eje 3 (Promoción Profesional)?", options:["Salarial y por turnos.","Horizontal y vertical.","Geográfica y temporal.","Funcional y jerárquica."], answer:1 },
+{ q:"El Análisis Cualitativo del seguimiento busca conocer:", options:["El grado de consecución de los objetivos.","Las relaciones existentes entre los objetivos y los resultados.","El presupuesto invertido.","El número de mujeres en puestos de dirección."], answer:1 },
+{ q:"La Medida 5.2 busca realizar campañas informativas de sensibilización especialmente dirigidas a:", options:["Personal de RRHH.","Trabajadoras con reducción de jornada.","Los trabajadores varones.","Personal de nueva incorporación."], answer:2 },
+{ q:"El indicador de seguimiento de la Medida 1.2 (seguimiento de promociones) es el Nº de:", options:["Solicitudes de promoción.","Mujeres promocionadas.","Hombres en puestos de dirección.","Plazas ofertadas."], answer:1 },
+{ q:"¿Cuál de las siguientes circunstancias es objeto de prevención especial en el Eje 7?", options:["El uso de telefonía móvil.","Los riesgos asociados al embarazo y la lactancia.","Los riesgos económicos.","El absentismo por enfermedad común."], answer:1 },
+{ q:"El compromiso de la EMT contra la violencia de género (Eje 10) incluye apoyar la:", options:["Formación obligatoria.","Inserción y protección de las trabajadoras víctimas de la violencia de género.","Movilidad forzosa del agresor.","Exclusión de beneficios sociales."], answer:1 },
+{ q:"En la Auditoría Salarial (Medida 4.2) se deben comprobar los orígenes de las diferencias, contemplando el salario base y los diferentes:", options:["Incentivos por ventas.","Complementos (fijos y variables).","Pagos en especie.","Retenciones fiscales."], answer:1 },
+{ q:"¿Qué área de la empresa tiene un objetivo específico sobre la 'infrarrepresentación femenina'?", options:["Política Retributiva.","Proceso de Selección y Contratación.","Infrarrepresentación femenina.","Comunicación."], answer:2 },
+{ q:"La Medida 7.1 de realizar estudios de salud laboral con perspectiva de género tiene un plazo de inicio en el:", options:["4º trimestre 2023.","2º trimestre 2022.","1º trimestre 2022.","Permanente."], answer:2 },
+{ q:"¿Qué se debe garantizar a las víctimas de VG a lo largo de toda su carrera profesional (Eje 10)?", options:["Un ascenso inmediato.","La confidencialidad.","Un cambio de grupo profesional.","La exención de turnos."], answer:1 },
+{ q:"Según el III Plan, la Comisión Negociadora de Igualdad, tras la aprobación del documento, pasa a ser la:", options:["Comisión de Nombramientos.","Comisión de Riesgos Laborales.","Comisión de Seguimiento de Igualdad.","Comisión de Contratación."], answer:2 },
+{ q:"Un objetivo específico del Eje 8 (Comunicación) es asegurar que la comunicación interna y externa promueva una imagen:", options:["Seria y profesional.","Inclusiva e igualitaria de mujeres y hombres.","Atractiva y moderna.","Exclusivamente visual."], answer:1 },
+{ q:"¿Cuántas dimensiones del impacto del Plan deben identificarse según el documento?", options:["Una","Dos","Tres","Cuatro"], answer:1 },
+{ q:"¿Cuál de estas medidas es considerada de carácter 'Permanente'?", options:["Realizar acciones formativas sobre corresponsabilidad.","Registro salarial.","Incluir la perspectiva de género en Gestión RRHH.","Realización de un seguimiento anual de las promociones."], answer:2 },
+{ q:"¿En qué caso la empresa dará preferencia a la trabajadora víctima de VG si el agresor trabaja en el mismo centro de trabajo (Eje 10)?", options:["Las vacaciones.","Las salidas (de la empresa).","El turno fijo de mañana.","Las comisiones de servicio."], answer:1 },
+{ q:"El seguimiento del Plan se inserta en el proceso de:", options:["Revisión salarial.","Mejora continua.","Auditoría externa.","Adaptación salarial."], answer:1 },
+{ q:"¿Qué es lo que busca la Medida 5.3 (Conciliación)?", options:["Disponer de un registro de información sobre permisos, suspensiones y excedencias por motivos familiares.","Eliminar todos los permisos retribuidos.","Obligar a los hombres a tomar permisos de paternidad.","Establecer la jornada intensiva obligatoria."], answer:0 },
+{ q:"El Eje 6 (Formación) busca garantizar la igualdad entre mujeres y hombres en el acceso a la formación, incorporando en la misma la perspectiva de:", options:["Profesionalización","Género","Innovación","Productividad"], answer:1 },
+{ q:"¿Qué debe revisarse en el Eje 9 (Acoso) además de difundirse?", options:["El Plan de Riesgos Laborales.","El Protocolo de prevención y erradicación del Acoso sexual o por razón de sexo.","Las bases de datos de personal.","El registro salarial."], answer:1 },
+{ q:"La Medida 1.2 implica la realización de un seguimiento anual de las promociones desagregadas por sexo, indicando:", options:["Antigüedad y edad.","Grupo profesional y puesto funcional.","Formación y retribución.","Modalidad de contrato y turno."], answer:1 },
+{ q:"¿Qué NO es un factor a considerar en la Política Retributiva para trabajos de igual valor?", options:["Las condiciones educativas.","Los factores estrictamente relacionados con su desempeño.","La naturaleza de las funciones.","El estado civil del trabajador."], answer:3 },
+{ q:"El Análisis de los recursos, metodologías y procedimientos puestos en marcha forma parte del Análisis __________ en el seguimiento del Plan.", options:["Funcional","Objetivo","Cualitativo","Cuantitativo"], answer:2 },
+{ q:"¿Cuál de estos NO es un Objetivo General del III Plan?", options:["Prevenir la discriminación laboral por razón de sexo.","Garantizar un trato no discriminatorio por razón de género.","Establecer la paridad obligatoria en todos los puestos.","Luchar contra la violencia de género."], answer:2 },
+{ q:"La Medida 8.1 (Comunicación) busca revisar y corregir el lenguaje y las imágenes utilizadas en las comunicaciones, tanto de uso interno como:", options:["Informal","Externo","Legal","Obligatorio"], answer:1 },
+{ q:"En el Eje 2, ¿qué principio debe respetarse en la contratación para garantizar la igualdad?", options:["Principio de Mayoría Absoluta","Principio de Composición Equilibrada de mujeres y hombres","Principio de Antigüedad","Principio de Rotación"], answer:1 },
+{ q:"¿Cuál es la temática principal del Eje 10?", options:["Prevención del acoso","Promoción interna","Violencia de género","RSC"], answer:2 },
+{ q:"¿Qué tipo de campañas se deben realizar para sensibilizar sobre la corresponsabilidad y conciliación (Medida 5.1)?", options:["Solo a nivel interno.","Solo a nivel externo.","En todas las áreas de la plantilla.","Exclusivamente al personal directivo."], answer:2 },
+{ q:"La evaluación de la eficacia de la formación (Medida 6.5) tiene como objetivo la corrección de posibles desviaciones para el diseño del:", options:["Protocolo de acoso.","Convenio Colectivo.","Siguiente Plan formativo.","Registro salarial."], answer:2 },
+{ q:"¿Qué debe tener en cuenta el Protocolo de Actuación contra la VG respecto a la jornada?", options:["Que sea siempre intensiva.","Facilitar la adaptación de la jornada, el cambio de turno o la flexibilidad horaria.","Que sea siempre fija de mañana.","La anulación de cualquier derecho a flexibilidad."], answer:1 },
+{ q:"¿Qué busca el Eje 4 (Política Retributiva) garantizar de forma transparente?", options:["Un sistema de promoción por antigüedad.","Un sistema de retribución no discriminatorio por razón de género.","El pago de complementos fijos a todo el personal.","La publicación del salario de cada trabajador."], answer:1 },
+{ q:"La Medida 7.2 busca implantar la transversalización de género promoviendo actuaciones preventivas dirigidas a trabajadoras con exposición a riesgos en circunstancias especiales como:", options:["Menopausia, embarazo y lactancia.","Cambio de domicilio.","Excedencia forzosa.","Promoción de puesto."], answer:0 },
+{ q:"¿Cuántos años de vigencia inicial tiene el III Plan de Igualdad de la EMT?", options:["3 años","4 años","5 años","6 años"], answer:1 },
+{ q:"Los indicadores de seguimiento y evaluación del Plan constituyen la herramienta...", options:["Básica del diagnóstico.","Fundamental del proceso de seguimiento y evaluación.","Secundaria del Plan.","Obligatoria de la Dirección."], answer:1 },
+{ q:"¿Qué Eje incluye la Medida de 'Auditorías salariales'?", options:["Eje 3","Eje 4","Eje 5","Eje 6"], answer:1 },
+{ q:"La Medida 11.2 (RSC) considera la posibilidad de exclusión de cualquier contratación a aquellas entidades que hayan sido sancionadas en firme por:", options:["Incumplimiento de plazos.","Tolerar prácticas contrarias al principio de igualdad y discriminatorias.","No tener Plan de Igualdad.","Tener pérdidas económicas."], answer:1 },
+{ q:"¿Qué tipo de análisis NO se incluye en los objetivos de seguimiento?", options:["Análisis Cuantitativo.","Análisis de recursos.","Análisis Cualitativo.","Análisis de impacto externo."], answer:3 },
+{ q:"En caso de litigio por la aplicación del Plan, la intervención de la Comisión será preceptiva con carácter:", options:["Posterior.","Simultáneo.","Previo.","Indiferente."], answer:2 },
+{ q:"La Medida 7.3 busca hacer un seguimiento de la siniestralidad y enfermedad profesional analizando los resultados con perspectiva de:", options:["Cuantitativa","Económica","Antigüedad","Género"], answer:3 },
+{ q:"Según el III Plan, el personal que esté de baja, excedencia, suspensión de contrato o vacaciones debe recibir información sobre:", options:["La Política Retributiva.","Los procesos de promoción interna.","El Protocolo de Acoso.","La evaluación final."], answer:1 },
+{ q:"El Eje 6 busca fomentar e impulsar la formación para todo el personal, garantizando el acceso sin distinción de:", options:["Grupo profesional","Antigüedad","Retribución","Género"], answer:3 },
+{ q:"El Eje 11 se refiere a:", options:["Comunicación y lenguaje","Responsabilidad Social y Ciudadana","Prevención del acoso","Política retributiva"], answer:1 },
+{ q:"El indicador de seguimiento de la Medida 2.1 (Perspectiva de género en Gestión RRHH) es la fecha de aprobación de elaboración del documento y el número de:", options:["Mujeres contratadas.","Personas informadas del procedimiento.","Plazas ofertadas.","Incidencias detectadas."], answer:1 },
+{ q:"La Medida 7.4 (Salud Laboral) establece formación desde la óptica de la igualdad para quién?", options:["La Dirección.","El personal administrativo.","El personal encargado de la Seguridad y Salud en el trabajo.","Todos los trabajadores."], answer:2 },
+{ q:"¿Qué Objetivo General se relaciona directamente con la Lucha contra la Violencia de Género?", options:["Favorecer la corresponsabilidad.","Garantizar la igualdad de trato.","Apoyar la inserción y protección de las trabajadoras víctimas de la violencia de género.","Eliminar las desigualdades laborales."], answer:2 },
+{ q:"La Auditoría Salarial debe comprobar los orígenes de las diferencias, contemplando los complementos:", options:["Fijos y temporales.","Fijos y variables.","Salariales y extrasalariales.","Únicamente salariales."], answer:1 },
+{ q:"¿Qué Eje de Intervención incluye la medida de 'Adaptar la adecuación ergonómica del puesto de la mujer embarazada o en período de lactancia'?", options:["Eje 5. Conciliación","Eje 6. Formación","Eje 7. Condiciones de Trabajo","Eje 10. Violencia de Género"], answer:2 },
+{ q:"En el Eje 10, ¿qué se considerará durante la jornada de trabajo a las víctimas de VG?", options:["Excedencia forzosa.","Concesión de permisos retribuidos.","Aumento de salario.","Cambio de puesto."], answer:1 },
+{ q:"La formación para responsables de selección (Medida 2.2) busca informarles sobre la importancia de:", options:["La antigüedad.","La igualdad de oportunidades.","La exclusividad.","La titulación mínima."], answer:1 },
+{ q:"¿El seguimiento del Plan de Igualdad se realiza a lo largo de su ejecución?", options:["No, solo se hace una evaluación final.","Sí, se realiza semestralmente.","Sí, se realiza anualmente.","No, es opcional."], answer:1 },
+{ q:"El Eje 1, Infrarrepresentación femenina, tiene como objetivo fomentar el acceso de mujeres a:", options:["Puestos de baja responsabilidad.","Puestos de alta dirección.","Puestos de responsabilidad.","Puestos de base."], answer:2 },
+{ q:"Una de las medidas del Eje 9 es informar y formar a toda la plantilla sobre el contenido y procedimiento establecido en el:", options:["Plan de Prevención.","Convenio Colectivo.","Protocolo de prevención y erradicación del Acoso.","Registro Salarial."], answer:2 },
+{ q:"El Eje 3, al revisar los criterios de promoción, busca favorecer la:", options:["Promoción masculina.","Evolución profesional de las mujeres.","Promoción por antigüedad.","Retribución variable."], answer:1 },
+{ q:"¿Cuál es la temática principal del Eje 5?", options:["Promoción y desarrollo","Conciliación y corresponsabilidad","Salud laboral","Prevención de riesgos"], answer:1 },
+{ q:"En la evaluación final, ¿qué factor debe tenerse en cuenta?", options:["El grado de cumplimiento de los objetivos del III Plan.","El nivel de beneficios empresariales.","La tasa de absentismo general.","El número de nuevas contrataciones."], answer:0 },
+{ q:"La Medida 8.2 (Comunicación) establece el diseño e impartición de acciones formativas para sensibilizar sobre la utilización de un lenguaje e imágenes:", options:["Técnicos.","No excluyentes.","Corporativos.","Abstractos."], answer:1 },
+{ q:"¿Qué tipo de cultura empresarial busca desarrollar el Eje 10 (Violencia de Género)?", options:["Comprometida con la igualdad.","Comprometida con la lucha contra la violencia de género.","De alta exigencia.","De bajos costes."], answer:1 },
+{ q:"La Medida 3.1 exige que la comunicación de los procesos de promoción interna sea:", options:["Exclusiva.","Discrecional.","Confidencial.","Transparente."], answer:3 },
+{ q:"¿Qué se debe garantizar en la Formación (Eje 6) para promover el desarrollo profesional de la plantilla?", options:["El acceso a la formación en cada centro.","La formación online obligatoria.","Un cupo de mujeres en cada curso.","La formación exclusivamente en horario no laboral."], answer:0 },
+{ q:"Según el III Plan, la EMT asume un compromiso de:", options:["Responsabilidad Social Corporativa.","Neutralidad de Género.","Crecimiento económico.","Exclusividad laboral."], answer:0 },
+{ q:"La Medida 7.5 incluye la realización de campañas de Salud Laboral y Prevención de Riesgos desde la perspectiva de:", options:["Medio Ambiente.","Calidad.","Género.","Innovación."], answer:2 },
+{ q:"¿Cuál de estos NO es un indicador del Eje 2 (Selección)?", options:["Fecha de aprobación del documento.","Nº de personas informadas del procedimiento.","Fecha Adhesión Consultora Externa.","Nº de bajas médicas por sexo."], answer:3 },
+{ q:"¿Qué debe incluir el Protocolo de acoso (Eje 9) para mostrar el compromiso conjunto de la dirección y la RLT?", options:["Una cláusula de confidencialidad absoluta.","Una declaración de principios.","La obligatoriedad de sancionar.","El nombramiento de un comité de expertos."], answer:1 },
+{ q:"La Medida 5.3 requiere que el registro de permisos y excedencias por motivos familiares esté:", options:["Firmado por el superior.","Disgregado por categoría.","Desagregado por sexo.","Incluido en el convenio."], answer:2 },
+{ q:"¿Qué se debe evitar en la revisión de las convocatorias de empleo (Medida 2.4)?", options:["El lenguaje técnico.","El lenguaje sexista o estereotipos.","Las referencias a la empresa.","La mención del salario."], answer:1 },
+{ q:"El III Plan busca garantizar la existencia de un trato no discriminatorio por razón de género, verificando la aplicación del principio de ________ a idéntica responsabilidad.", options:["Antigüedad","Equidad","Paridad","Igualdad de acceso"], answer:1 },
+{ q:"¿El Eje 11 tiene como objetivo trasladar la política de igualdad de género a qué grupos?", options:["Solo a la Dirección.","Solo a la plantilla.","A todos nuestros grupos de interés.","Solo a las mujeres."], answer:2 },
+{ q:"El seguimiento del Plan se realizará semestralmente a lo largo de la ejecución, y los resultados obtenidos se aplicarán en el desarrollo del mismo garantizando la parte _______ de la evaluación continua.", options:["Final.","Parcial.","Integral.","Principal."], answer:2 },
+{ q:"¿Qué medida se relaciona con el plazo del 4º trimestre de 2022?", options:["Registro Salarial.","Evaluación del Plan de Formación.","Acciones formativas en selección.","Base de datos de mujeres con potencial de desarrollo."], answer:3 },
+{ q:"El Eje 7 (Salud Laboral) incluye promover el desarrollo de actuaciones preventivas dirigidas a las trabajadoras con exposición a riesgos en circunstancias especiales asociadas a la maternidad, como la adecuación ergonómica del puesto de la:", options:["Mujer en excedencia.","Mujer embarazada o en período de lactancia.","Mujer con alta antigüedad.","Mujer con contrato temporal."], answer:1 },
+{ q:"La Medida 1.2 (Seguimiento de promociones) debe ser realizada por:", options:["RRHH.","La Comisión de Seguimiento Igualdad.","El Comité de Empresa.","La Dirección."], answer:1 },
+{ q:"¿Qué tipo de información cualitativa se busca en el proceso de ejecución del seguimiento del Plan?", options:["Las dificultades encontradas y soluciones aportadas.","El número de reclamaciones.","El presupuesto ejecutado.","La lista de asistentes a la Comisión."], answer:0 },
+{ q:"El Protocolo de acoso (Eje 9) debe incluir una declaración de principios con el objetivo de mostrar el compromiso asumido conjuntamente por la dirección de la empresa y la:", options:["Comisión Paritaria.","RLT (Representación Legal de los Trabajadores).","Asesoría Jurídica.","Inspección de Trabajo."], answer:1 },
+{ q:"¿Qué tipo de formación deben recibir los integrantes de la Comisión de Igualdad y la Comisión Interna para situaciones de acoso (Medida 9.2)?", options:["Formación de primer nivel.","Formación especializada en la materia.","Formación en prevención de riesgos laborales.","Formación financiera."], answer:1 },
+{ q:"El Eje 6 (Formación) también busca impulsar la formación para todo el personal, incorporando en la misma la ___________ de género.", options:["Valoración.","Perspectiva.","Diferenciación.","Objetividad."], answer:1 },
+{ q:"El Eje 5 (Conciliación) busca garantizar el ejercicio corresponsable de los derechos de conciliación, informando de ellos y haciéndolos _________ a toda la plantilla.", options:["Obligatorios.","Accesorios.","Accesibles.","Negociables."], answer:2 },
+{ q:"¿Qué plazo tienen los indicadores de la Medida 2.1 (Perspectiva de género en Gestión RRHH)?", options:["Mensual.","Anual.","Permanente.","Temporal."], answer:2 },
+{ q:"Una de las atribuciones de la Comisión es el conocimiento __________ de los resultados del seguimiento del Plan.", options:["Mensual.","Semanal.","Anual.","Trimestral."], answer:2 },
+{ q:"¿Qué debe revisarse en el Eje 3 (Promoción) para detectar y eliminar posibles discriminaciones de sexo?", options:["La retribución fija.","Los criterios objetivos y elementos valorables de méritos y capacidades.","Los turnos de trabajo.","Los horarios de la formación."], answer:1 },
+{ q:"La Auditoría Salarial tiene como objetivo comprobar los orígenes de las:", options:["Contrataciones.","Diferencias salariales.","Promociones.","Excedencias."], answer:1 },
+{ q:"En el Eje 10, ¿quién debe facilitar el acompañamiento y/o asesoramiento a mujeres víctimas de violencia de género?", options:["La Dirección.","El Comité de Empresa.","La empresa.","La Asesoría Jurídica."], answer:2 },
+{ q:"La Medida 8.3 busca informar y difundir el III Plan de Igualdad a:", options:["Solo a la Dirección.","Todo el personal de la empresa.","Solo a los nuevos ingresos.","Solo al personal de RRHH."], answer:1 },
+{ q:"El Eje 11, de Responsabilidad Social y Ciudadana, busca promover el valor de la igualdad de género y crear una cultura:", options:["De excelencia.","De sostenibilidad.","Acorde con el principio de igualdad.","De alta competencia."], answer:2 },
+{ q:"Los objetivos del seguimiento serán el Análisis Cuantitativo, el Análisis Cualitativo y el Análisis de:", options:["Los costes de la implementación.","Los recursos, metodologías y procedimientos puestos en marcha.","Las nuevas contrataciones.","Las bajas médicas."], answer:1 },
+{ q:"La Medida 4.1 de Registro Salarial exige que los datos estén distribuidos por:", options:["Grupos de edad.","Antigüedad.","Puestos de trabajo de igual valor.","Nivel de estudios."], answer:2 },
+{ q:"¿Cuál es la temática principal del Eje 8?", options:["Salud laboral","Promoción interna","Comunicación. Lenguaje e Imágenes Inclusivas","Conciliación"], answer:2 },
+{ q:"El Protocolo de prevención de acoso (Eje 9) debe incluir una declaración de principios con el objetivo de mostrar el compromiso de la dirección de la empresa y la RLT para la prevención y eliminación del acoso por razón de sexo y el acoso:", options:["Verbal","Físico","Psicológico","Sexual"], answer:3 },
+{ q:"¿Qué busca eliminar el Eje 1 (Infrarrepresentación) en el largo plazo?", options:["La segregación vertical y horizontal.","Las diferencias de edad.","Las diferencias de antigüedad.","Los contratos temporales."], answer:0 },
+{ q:"¿Cuántas veces se establece que se realizará una evaluación anual del III Plan desde su entrada en vigor?", options:["Dos veces.","Una vez.","Tres veces.","Cuatro veces."], answer:1 },
+{ q:"¿Cuál es el responsable principal de las medidas del Eje 7 (Salud Laboral)?", options:["RRHH","Dirección General","SPP","Comisión de Igualdad"], answer:2 },
+{ q:"La Medida 5.1 (Conciliación) busca realizar acciones formativas y campañas sobre la corresponsabilidad y la conciliación en:", options:["El centro de trabajo.","Todas las áreas de la plantilla.","Los puestos de dirección.","El turno de noche."], answer:1 },
+{ q:"¿Qué busca la Medida 2.4 al convocar bolsas de empleo con un lenguaje y unas imágenes que no resulten sexistas?", options:["Aumentar el número de solicitantes.","Asegurar la paridad.","Responder a la normativa legal.","Evitar estereotipos."], answer:3 },
+{ q:"¿Cuál de estos NO es un Objetivo Específico del III Plan?", options:["Política Retributiva.","Proceso de selección y contratación.","Conciliación.","Negociación salarial."], answer:3 },
+{ q:"¿Qué tipo de discriminación busca prevenir el III Plan como objetivo general?", options:["Por razón de edad.","Laboral por razón de sexo.","Por razón de nacionalidad.","Por razón de discapacidad."], answer:1 },
+{ q:"¿Qué tipo de información debe disponer RRHH de forma actualizada (Medida 2.5)?", options:["Estadística desagregada por sexo según tipo de contrato, turnos, jornada, categoría profesional y puesto.","Solo el número de plantilla.","Los resultados económicos.","La planificación de rutas."], answer:0 },
+{ q:"El Análisis Cualitativo del seguimiento busca conocer información de tipo
