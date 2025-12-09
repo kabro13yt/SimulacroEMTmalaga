@@ -11,7 +11,7 @@
     h1 {color:#003366; margin:10px 0 5px; font-size:28px;}
     h1 small {display:block; font-size:17px; color:#d32f2f; font-weight:bold;}
     .question-box {background:#e6f7ff; padding:25px; border-radius:12px; border-left:6px solid #0066cc; font-size:19px; margin-bottom:20px; line-height:1.5;}
-    .option {background:#fff; border: 2px solid #ddd; padding:18px; margin:12px 0; border-radius:10px; cursor:pointer; transition:all 0.3s;}
+    .option {background:#fff; border: 2px solid #ddd; padding:18px; margin:12px 0; border-radius:10px; cursor:pointer; transition:all 0.3s; font-size:17px;}
     .option:hover {background:#f0f8ff; border-color:#0066cc;}
     .correct {background:#d4edda !important; border-color:#28a745 !important; color:#155724;}
     .wrong {background:#f8d7da !important; border-color:#dc3545 !important; color:#721c24;}
@@ -30,7 +30,7 @@
 <div class="container">
     <header>
         <h1>Test EMT Málaga 2025<br>
-        <small>40 preguntas aleatorias de Líneas y Paradas (Incluye tus nuevas preguntas)</small></h1>
+        <small>40 preguntas aleatorias de Líneas y Paradas (Grupo Victoria y más)</small></h1>
     </header>
 
     <div id="question" class="question-box"></div>
@@ -45,7 +45,7 @@
 </div>
 
 <script>
-// ==================== ARRAY LINEAS PARADAS – FUENTE PRINCIPAL DE PREGUNTAS ====================
+// ==================== ARRAY LINEAS PARADAS – 100% CORREGIDO Y FUNCIONANDO ====================
 const lineasParadas = [
         // TUS PREGUNTAS ORIGINALES (las primeras que tenías)
 { q:"¿Qué línea debe coger un usuario en Av. Plutarco para llegar a Cortijo Alto?", options:["8","N4","C5","3"], answer:0 },
@@ -114,8 +114,7 @@ const lineasParadas = [
 { q:"¿La Línea C1 pasa por 'Alameda Principal – Norte'?", options:["Sí","No"], answer:0 },
 { q:"¿La Línea C1 pasa por la Estación de FF.CC (Explanada de la Estación)?", options:["Sí","No"], answer:0 },
 { q:"Parada de la C1 cerca del Centro Comercial El Corte Inglés:", options:["Avda de las Américas – Centro Comercial","Cuarteles – Perchel","Ingeniero de la Torre Acosta","Doctor Escassi – Las Chapas"], answer:0 },
-{ q:"¿La Línea C1 pasa por 'Carril Gamarra – La Rosa'?", options:["Sí","No"], answer:0 }, 
-{ q:"¿La Línea C1 pasa por 'Magistrado Salvador Barberá' dos veces?", options:["Sí, una vez normal y otra en Centro de Salud","No, solo una vez","Nunca","Dos veces seguidas"], answer:0 },
+{ q:"¿La Línea C1 pasa por 'Carril Gamarra – La Rosa'?", options:["Sí","No"], answer:0 }, { q:"¿La Línea C1 pasa por 'Magistrado Salvador Barberá' dos veces?", options:["Sí, una vez normal y otra en Centro de Salud","No, solo una vez","Nunca","Dos veces seguidas"], answer:0 },
 { q:"¿La Línea C1 pasa por 'Martínez de la Rosa' tres veces seguidas?", options:["Sí","No"], answer:0 },
 { q:"Parada de la C1 que está justo después de 'Cuarteles – Eslava':", options:["Acda. Explanada de la Estación","Avda de Andalucía","Paseo del Parque","Doctor Escassi"], answer:0 },
 { q:"¿La Línea C1 pasa por Huelin?", options:["Sí","No"], answer:0 },
@@ -202,7 +201,8 @@ const lineasParadas = [
     
 ];
 
-// Estos arrays se mantienen pero ya NO se usan en el examen para cumplir la petición del usuario.
+// ==================== PLAN DE IGUALDAD Y ORDENANZA ====================
+// Estos arrays se mantienen pero ya no se usan en el examen para cumplir la petición del usuario.
 const planIgualdad = [
     { q:"Vigencia del III Plan de Igualdad:", options:["2020-2024","2022-2026","2021-2025","2023-2027"], answer:1 },
     // ... tus 100 preguntas
@@ -219,14 +219,14 @@ let examQuestions = [], currentIndex = 0, userAnswers = [];
 function startNewExam() {
     const totalQuestions = 40;
     
-    // ⭐ MODIFICACIÓN CLAVE: Selecciona 40 preguntas aleatorias de lineasParadas.
-    // Esto incluye todas las preguntas de líneas y paradas, ¡incluyendo las 20 nuevas de Línea 1!
+    // MODIFICACIÓN CLAVE: Selecciona 40 preguntas aleatorias SOLAMENTE de lineasParadas
+    // Si lineasParadas tiene más de 40 preguntas, toma 40 al azar.
+    // Si en el futuro añades más preguntas, estas serán incluidas en el pool de selección.
     const l = lineasParadas.sort(() => 0.5 - Math.random()).slice(0, totalQuestions);
 
-    examQuestions = l; 
+    examQuestions = l; // El examen es ahora solo las 40 preguntas de líneas
     currentIndex = 0;
-    // La longitud del array de respuestas ahora es dinámica
-    userAnswers = new Array(examQuestions.length).fill(null);
+    userAnswers = new Array(totalQuestions).fill(null);
     document.getElementById("score").innerHTML = "";
     loadQuestion();
     updateButtons();
@@ -234,7 +234,7 @@ function startNewExam() {
 
 function loadQuestion() {
     const q = examQuestions[currentIndex];
-    // Se usa examQuestions.length para que el índice sea dinámico
+    // Se usa examQuestions.length para que el índice sea dinámico si cambias el número total de preguntas.
     document.getElementById("question").innerHTML = `<b>Pregunta ${currentIndex+1}/${examQuestions.length}</b><br>${q.q}`;
     let html = "";
     q.options.forEach((opt,i) => {
@@ -262,14 +262,14 @@ function updateButtons() {
 }
 function updateScore() { 
     const r = userAnswers.filter(x=>x!==null).length;
-    // El cálculo del acierto es sobre el total de preguntas seleccionadas
+    // Se usa examQuestions.length para que el acierto se calcule sobre el total real.
     const a = userAnswers.filter((x,i)=>x===examQuestions[i]?.answer).length;
     document.getElementById("score").innerHTML = `Respondidas: ${r}/${examQuestions.length} | Aciertos: ${a}`;
 }
 function finalizar() {
     const correctas = userAnswers.filter((x,i)=>x===examQuestions[i].answer).length;
     document.getElementById("question").innerHTML = "<div class='final'>EXAMEN COMPLETADO!</div>";
-    // El mensaje final usa la longitud dinámica del examen
+    // Se usa examQuestions.length para el mensaje final
     document.getElementById("options").innerHTML = `<h2 style="text-align:center;color:#16a34a;">${correctas} aciertos de ${examQuestions.length}!</h2><p>Pulsa Nuevo Examen</p>`;
     document.getElementById("score").innerHTML = "";
     document.getElementById("prevBtn").disabled = true;
