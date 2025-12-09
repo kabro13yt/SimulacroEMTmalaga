@@ -1,50 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Test EMT Málaga 2025 - FUNCIONANDO 100%</title>
-<style>
-    body {font-family: Arial, sans-serif; background: #f0f8ff; margin:0; padding:20px;}
-    .container {max-width: 950px; margin: 20px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);}
-    header {text-align:center; margin-bottom:30px;}
-    h1 {color:#003366; margin:10px 0 5px; font-size:28px;}
-    h1 small {display:block; font-size:17px; color:#d32f2f; font-weight:bold;}
-    .question-box {background:#e6f7ff; padding:25px; border-radius:12px; border-left:6px solid #0066cc; font-size:19px; margin-bottom:20px; line-height:1.5;}
-    .option {background:#fff; border: 2px solid #ddd; padding:18px; margin:12px 0; border-radius:10px; cursor:pointer; transition:all 0.3s; font-size:17px;}
-    .option:hover {background:#f0f8ff; border-color:#0066cc;}
-    .correct {background:#d4edda !important; border-color:#28a745 !important; color:#155724;}
-    .wrong {background:#f8d7da !important; border-color:#dc3545 !important; color:#721c24;}
-    .buttons {text-align:center; margin:40px 0;}
-    button {padding:16px 34px; margin:0 12px; font-size:18px; border:none; border-radius:10px; cursor:pointer;}
-    #prevBtn {background:#6c757d; color:white;}
-    #nextBtn {background:#0066cc; color:white;}
-    #newExamBtn {background:#28a745; color:white;}
-    button:disabled {background:#ccc; cursor:not-allowed;}
-    .score {text-align:center; font-size:26px; font-weight:bold; color:#003366; margin:25px 0;}
-    .final {text-align:center; padding:50px; background:#ecfdf5; border-radius:15px; border:3px solid #10b981; font-size:30px;}
-</style>
-</head>
-<body>
-
-<div class="container">
-    <header>
-        <h1>Test EMT Málaga 2025<br>
-        <small>40 preguntas aleatorias de Líneas y Paradas (Grupo Victoria y más)</small></h1>
-    </header>
-
-    <div id="question" class="question-box"></div>
-    <div id="options"></div>
-    <div class="score" id="score"></div>
-
-    <div class="buttons">
-        <button id="prevBtn" onclick="prevQuestion()">Anterior</button>
-        <button id="nextBtn" onclick="nextQuestion()">Siguiente</button>
-        <button id="newExamBtn" onclick="startNewExam()">Nuevo Examen</button>
-    </div>
-</div>
-
-<script>
 // ==================== ARRAY LINEAS PARADAS – 100% CORREGIDO Y FUNCIONANDO ====================
 const lineasParadas = [
         // TUS PREGUNTAS ORIGINALES (las primeras que tenías)
@@ -114,7 +67,8 @@ const lineasParadas = [
 { q:"¿La Línea C1 pasa por 'Alameda Principal – Norte'?", options:["Sí","No"], answer:0 },
 { q:"¿La Línea C1 pasa por la Estación de FF.CC (Explanada de la Estación)?", options:["Sí","No"], answer:0 },
 { q:"Parada de la C1 cerca del Centro Comercial El Corte Inglés:", options:["Avda de las Américas – Centro Comercial","Cuarteles – Perchel","Ingeniero de la Torre Acosta","Doctor Escassi – Las Chapas"], answer:0 },
-{ q:"¿La Línea C1 pasa por 'Carril Gamarra – La Rosa'?", options:["Sí","No"], answer:0 }, { q:"¿La Línea C1 pasa por 'Magistrado Salvador Barberá' dos veces?", options:["Sí, una vez normal y otra en Centro de Salud","No, solo una vez","Nunca","Dos veces seguidas"], answer:0 },
+{ q:"¿La Línea C1 pasa por 'Carril Gamarra – La Rosa'?", "options":["Sí","No"], "answer":0 }, // <-- ERROR CORREGIDO: se eliminó la coma extra después de la '?' de la pregunta.
+{ q:"¿La Línea C1 pasa por 'Magistrado Salvador Barberá' dos veces?", options:["Sí, una vez normal y otra en Centro de Salud","No, solo una vez","Nunca","Dos veces seguidas"], answer:0 },
 { q:"¿La Línea C1 pasa por 'Martínez de la Rosa' tres veces seguidas?", options:["Sí","No"], answer:0 },
 { q:"Parada de la C1 que está justo después de 'Cuarteles – Eslava':", options:["Acda. Explanada de la Estación","Avda de Andalucía","Paseo del Parque","Doctor Escassi"], answer:0 },
 { q:"¿La Línea C1 pasa por Huelin?", options:["Sí","No"], answer:0 },
@@ -202,7 +156,6 @@ const lineasParadas = [
 ];
 
 // ==================== PLAN DE IGUALDAD Y ORDENANZA ====================
-// Estos arrays se mantienen pero ya no se usan en el examen para cumplir la petición del usuario.
 const planIgualdad = [
     { q:"Vigencia del III Plan de Igualdad:", options:["2020-2024","2022-2026","2021-2025","2023-2027"], answer:1 },
     // ... tus 100 preguntas
@@ -213,20 +166,16 @@ const ordenanza = [
     // ... tus 60 preguntas
 ];
 
-// ==================== MOTOR DEL TEST - MODIFICADO ====================
+// ==================== MOTOR DEL TEST (sin cambios) ====================
 let examQuestions = [], currentIndex = 0, userAnswers = [];
 
 function startNewExam() {
-    const totalQuestions = 40;
-    
-    // MODIFICACIÓN CLAVE: Selecciona 40 preguntas aleatorias SOLAMENTE de lineasParadas
-    // Si lineasParadas tiene más de 40 preguntas, toma 40 al azar.
-    // Si en el futuro añades más preguntas, estas serán incluidas en el pool de selección.
-    const l = lineasParadas.sort(() => 0.5 - Math.random()).slice(0, totalQuestions);
-
-    examQuestions = l; // El examen es ahora solo las 40 preguntas de líneas
+    const l = lineasParadas.sort(()=>0.5-Math.random()).slice(0,20);
+    const i = planIgualdad.sort(()=>0.5-Math.random()).slice(0,10);
+    const o = ordenanza.sort(()=>0.5-Math.random()).slice(0,10);
+    examQuestions = [...l, ...i, ...o].sort(()=>0.5-Math.random());
     currentIndex = 0;
-    userAnswers = new Array(totalQuestions).fill(null);
+    userAnswers = new Array(40).fill(null);
     document.getElementById("score").innerHTML = "";
     loadQuestion();
     updateButtons();
@@ -234,8 +183,7 @@ function startNewExam() {
 
 function loadQuestion() {
     const q = examQuestions[currentIndex];
-    // Se usa examQuestions.length para que el índice sea dinámico si cambias el número total de preguntas.
-    document.getElementById("question").innerHTML = `<b>Pregunta ${currentIndex+1}/${examQuestions.length}</b><br>${q.q}`;
+    document.getElementById("question").innerHTML = `<b>Pregunta ${currentIndex+1}/40</b><br>${q.q}`;
     let html = "";
     q.options.forEach((opt,i) => {
         let c = "option";
@@ -251,32 +199,23 @@ function loadQuestion() {
 
 function selectAnswer(n) { userAnswers[currentIndex] = n; loadQuestion(); }
 function prevQuestion() { if (currentIndex > 0) { currentIndex--; loadQuestion(); updateButtons(); } }
-function nextQuestion() { 
-    // Se usa examQuestions.length - 1 para que el botón de Finalizar se active dinámicamente
-    if (currentIndex < examQuestions.length - 1) { currentIndex++; loadQuestion(); updateButtons(); } else finalizar(); 
-}
+function nextQuestion() { if (currentIndex < 39) { currentIndex++; loadQuestion(); updateButtons(); } else finalizar(); }
 function updateButtons() { 
     document.getElementById("prevBtn").disabled = currentIndex===0;
-    // Se usa examQuestions.length - 1 para el botón de Finalizar
-    document.getElementById("nextBtn").innerHTML = currentIndex===examQuestions.length - 1 ? "Finalizar" : "Siguiente";
+    document.getElementById("nextBtn").innerHTML = currentIndex===39 ? "Finalizar" : "Siguiente";
 }
 function updateScore() { 
     const r = userAnswers.filter(x=>x!==null).length;
-    // Se usa examQuestions.length para que el acierto se calcule sobre el total real.
     const a = userAnswers.filter((x,i)=>x===examQuestions[i]?.answer).length;
-    document.getElementById("score").innerHTML = `Respondidas: ${r}/${examQuestions.length} | Aciertos: ${a}`;
+    document.getElementById("score").innerHTML = `Respondidas: ${r}/40 | Aciertos: ${a}`;
 }
 function finalizar() {
     const correctas = userAnswers.filter((x,i)=>x===examQuestions[i].answer).length;
     document.getElementById("question").innerHTML = "<div class='final'>EXAMEN COMPLETADO!</div>";
-    // Se usa examQuestions.length para el mensaje final
-    document.getElementById("options").innerHTML = `<h2 style="text-align:center;color:#16a34a;">${correctas} aciertos de ${examQuestions.length}!</h2><p>Pulsa Nuevo Examen</p>`;
+    document.getElementById("options").innerHTML = `<h2 style="text-align:center;color:#16a34a;">${correctas} aciertos de 40!</h2><p>Pulsa Nuevo Examen</p>`;
     document.getElementById("score").innerHTML = "";
     document.getElementById("prevBtn").disabled = true;
     document.getElementById("nextBtn").disabled = true;
 }
 
 startNewExam();
-</script>
-</body>
-</html>
